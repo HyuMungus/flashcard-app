@@ -69,7 +69,6 @@ export default function EditCards({ cancelHandler }) {
             className="form-control"
             id="cardFront"
             rows="3"
-            placeholder="Deck name"
             value={card.front}
             onChange={changeFront}
           />
