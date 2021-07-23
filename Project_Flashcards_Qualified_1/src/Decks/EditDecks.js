@@ -13,7 +13,7 @@ export default function EditDecks({ cancelHandler }) {
 
   useEffect(() => {
     async function loadDeck() {
-      const loadedDeck = await readDeck(deckId);
+      const loadedDeck = await readDeck(deckId);          //loads deck
       setDeck(loadedDeck);
     }
     loadDeck();
@@ -21,14 +21,14 @@ export default function EditDecks({ cancelHandler }) {
 
   async function editHandler(event) {
     event.preventDefault();
-    const result = await updateDeck(deck);
+    const result = await updateDeck(deck);              //handles the updating of deck then sends you to page with its contents
     history.push(`/decks/${result.id}`);
   }
 
   function changeName(event) {
     setDeck({ ...deck, name: event.target.value });
   }
-
+                                                                      //updates contents
   function changeDesc(event) {
     setDeck({ ...deck, description: event.target.value });
   }
