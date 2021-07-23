@@ -7,13 +7,13 @@ export default function Home({decks}) {
 
   async function deleteButtonHandler(deckId) {
     if (
-      window.confirm("Delete this deck? You will not be able to recover it.")
+      window.confirm("Delete this deck? You will not be able to recover it.")     //function to handle the deleting of decks
     ) {
       await deleteDeck(deckId);
       history.go(0);
     }
   }
-  const allDecks = decks.map((deck, index) => (
+  const allDecks = decks.map((deck, index) => (             //maps all decks to be displayed the same way on page
     <div className="card" key={index}>
       <div className="card-body">
         <h5 className="card-title">{deck.name}</h5>
