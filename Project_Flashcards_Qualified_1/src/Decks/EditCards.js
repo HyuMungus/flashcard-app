@@ -19,7 +19,7 @@ export default function EditCards({ cancelHandler }) {
       const loadedCard = await readCard(cardId);
       setCard({
         id: cardId,
-        front: loadedCard.front,
+        front: loadedCard.front,                      //sets all values of the card form to be that of the card you are editing
         back: loadedCard.back,
         deckId: Number(deckId),
       });
@@ -27,21 +27,21 @@ export default function EditCards({ cancelHandler }) {
     async function loadDeckName() {
       const loadedDeckName = await readDeck(deckId);
       setDeckName(loadedDeckName.name);
-    }
+    }                                                           //used to have access to the decks name in which the card belongs to
     loadCard();
     loadDeckName();
   }, [cardId, deckId]);
 
   async function editHandler(event) {
     event.preventDefault();
-    const result = await updateCard(card);
+    const result = await updateCard(card);                //updates the card upon submission then sends user to page in which it is displayed
     history.push(`/decks/${result.deckId}`);
   }
 
   function changeFront(event) {
     setCard({ ...card, front: event.target.value });
   }
-
+                                                              //updates values in form
   function changeBack(event) {
     setCard({ ...card, back: event.target.value });
   }
