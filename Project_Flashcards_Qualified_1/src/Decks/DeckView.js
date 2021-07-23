@@ -12,13 +12,13 @@ export default function DeckView({ deckDeleteHandler, cardDeleteHandler }) {
 
   useEffect(() => {
     async function loadDeck() {
-      const loadedDeck = await readDeck(deckId);
+      const loadedDeck = await readDeck(deckId);        //loads data from the decks
       setDeck(loadedDeck);
     }
     loadDeck();
   }, [deckId]);
 
-  const cardList = deck.cards.map((card) => (
+  const cardList = deck.cards.map((card) => (             //maps all cards to be displayed in the same manner with their respective edit/delete buttons
     <div className="card" key={card.id}>
       <div className="card-body">
         <h5 className="card-title">{card.name}</h5>
