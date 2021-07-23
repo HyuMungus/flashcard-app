@@ -19,7 +19,7 @@ export default function StudyDeck() {
       const loadedDeck = await readDeck(deckId);
       setDeck(loadedDeck);
       setStudy({
-        cards: loadedDeck.cards,
+        cards: loadedDeck.cards,                        //loads in the deck then matches its values with study
         currentCard: 0,
         flipped: false,
         front: true,
@@ -32,14 +32,14 @@ export default function StudyDeck() {
   function flipHandler() {
     setStudy({
       ...study,
-      front: !study.front,
+      front: !study.front,        
       flipped: true,
     });
   }
 
   function cardSideHandler() {
     return study.front
-      ? study.cards[study.currentCard].front
+      ? study.cards[study.currentCard].front      //displays front or back content of cards depending on whether front is true or false
       : study.cards[study.currentCard].back;
   }
 
@@ -57,7 +57,7 @@ export default function StudyDeck() {
           flipped: false,
         });
       } else {
-        history.push("/");
+        history.push("/");                            //checks if end of deck has been reached and allows you to restart. adds 1 to current card so data could be displayed properly
       }
     } else {
       setStudy({
@@ -69,7 +69,7 @@ export default function StudyDeck() {
     }
   }
 
-  if (study.cards.length < 3) {
+  if (study.cards.length < 3) {           //displays different screen if deck you are studying has less than 3 cards
     return (
       <div>
         <nav aria-label="breadcrumb">
