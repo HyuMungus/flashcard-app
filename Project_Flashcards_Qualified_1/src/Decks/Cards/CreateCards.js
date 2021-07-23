@@ -57,7 +57,7 @@ export default function CreateCards({ cancelHandler }) {
       <h4>{deck.name}: Add Card</h4>
       <section key="new-card">
         <h2>Create Cards</h2>
-        <form key="newDeck" className="form-group">
+        <form key="newCard" className="form-group">
           <label htmlFor="cardFront">Front Side</label>
           <textarea
             className="form-control"
