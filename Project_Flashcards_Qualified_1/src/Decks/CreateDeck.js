@@ -28,7 +28,7 @@ export default function CreateDeck({ cancelHandler }) {
 
   function changeName(event) {
     setDeck({ ...deck, name: event.target.value });   
-  }                                                                         //update the contents in form
+  }                                                                         //update the contents
   function changeDesc(event) {
     setDeck({ ...deck, description: event.target.value });
   }
