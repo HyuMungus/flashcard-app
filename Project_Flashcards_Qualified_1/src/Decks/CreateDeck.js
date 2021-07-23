@@ -18,7 +18,7 @@ export default function CreateDeck({ cancelHandler }) {
       setDeck({
         id: 0,
         name: "",
-        description: "",
+        description: "",                                            //creates new deck, sets it back to initial state then sends you to page with it's id
         cards: [],
       });
       history.push(`/decks/${newDeck.id}`);
@@ -27,8 +27,8 @@ export default function CreateDeck({ cancelHandler }) {
   }
 
   function changeName(event) {
-    setDeck({ ...deck, name: event.target.value });
-  }
+    setDeck({ ...deck, name: event.target.value });   
+  }                                                                         //update the contents in form
   function changeDesc(event) {
     setDeck({ ...deck, description: event.target.value });
   }
