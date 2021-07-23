@@ -7,9 +7,9 @@ import Home from "./Home";
 import CreateDeck from "../Decks/CreateDeck";
 import DeckView from "../Decks/DeckView";
 import { deleteDeck, listDecks, deleteCard } from "../utils/api/index.js";
-import CreateCards from "../Decks/Cards/CreateCards";
+import CreateCards from "../Decks/CreateCards";
 import EditDecks from "../Decks/EditDecks";
-import EditCards from "../Decks/Cards/EditCards";
+import EditCards from "../Decks/EditCards";
 import StudyDeck from "./StudyDeck";
 
 function Layout() {
@@ -18,21 +18,21 @@ function Layout() {
 
   useEffect(() => {
     async function loadDeck() {
-      const loadedDeck = await listDecks();
+      const loadedDeck = await listDecks(); //loads all decks
       setDecks(loadedDeck);
     }
     loadDeck();
   }, []);
 
   async function cardDeleteHandler(cardId) {
-    if (window.confirm("Delete card? This can not be undone.")) {
+    if (window.confirm("Delete card? This can not be undone.")) {   //delete handler for cards
       await deleteCard(cardId);
       history.go(0);
     }
   }
 
   async function deckDeleteHandler(deckId) {
-    if (window.confirm("Delete this deck? This can not be undone")) {
+    if (window.confirm("Delete this deck? This can not be undone")) {   //delete handler for deck
       deleteDeck(deckId);
       history.push("/");
     }
