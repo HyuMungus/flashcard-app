@@ -22,7 +22,7 @@ export default function CreateCards({ cancelHandler }) {
   function newCardHandler(event) {
     event.preventDefault();
     async function createdCard() {
-      await createCard(deckId, card);
+      await createCard(deckId, card);               //creates the new card then sets it to its initial state
       setCard({
         front: "",
         back: "",
@@ -35,7 +35,7 @@ export default function CreateCards({ cancelHandler }) {
   function changeFront(event) {
     setCard({ ...card, front: event.target.value });
   }
-
+                                                            //updates contents in card form
   function changeBack(event) {
     setCard({ ...card, back: event.target.value });
   }
