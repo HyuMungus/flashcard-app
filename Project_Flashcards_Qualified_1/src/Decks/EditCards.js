@@ -1,5 +1,5 @@
 import { useHistory } from "react-router";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { readCard, readDeck, updateCard } from "../utils/api";
 
@@ -19,13 +19,13 @@ export default function EditCards({ cancelHandler }) {
       const loadedCard = await readCard(cardId);
       setCard({
         id: cardId,
-        front: loadedCard.front,
+        front: loadedCard.front,                              //loads the data from card you chose to edit
         back: loadedCard.back,
         deckId: Number(deckId),
       });
     }
     async function loadDeckName() {
-      const loadedDeckName = await readDeck(deckId);
+      const loadedDeckName = await readDeck(deckId);          //used to access the decks name in which card is associated with
       setDeckName(loadedDeckName.name);
     }
     loadCard();
@@ -34,14 +34,14 @@ export default function EditCards({ cancelHandler }) {
 
   async function editHandler(event) {
     event.preventDefault();
-    const result = await updateCard(card);
+    const result = await updateCard(card);                  //handles the updating of the card upon submission then redirects you to the cards route
     history.push(`/decks/${result.deckId}`);
   }
 
   function changeFront(event) {
     setCard({ ...card, front: event.target.value });
   }
-
+                                                        //updates values in form
   function changeBack(event) {
     setCard({ ...card, back: event.target.value });
   }
