@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, useParams, Link } from "react-router-dom";
 import { readDeck } from "../utils/api";
 
@@ -16,7 +16,7 @@ export default function StudyDeck() {
 
   useEffect(() => {
     async function loadDeck() {
-      const loadedDeck = await readDeck(deckId);
+      const loadedDeck = await readDeck(deckId);              //loads deck in
       setDeck(loadedDeck);
       setStudy({
         cards: loadedDeck.cards,
@@ -32,25 +32,25 @@ export default function StudyDeck() {
   function flipHandler() {
     setStudy({
       ...study,
-      front: !study.front,
+      front: !study.front,        //will change whether the card is flipped or not
       flipped: true,
     });
   }
 
   function cardSideHandler() {
     return study.front
-      ? study.cards[study.currentCard].front
+      ? study.cards[study.currentCard].front            //displays the front or back of card depending on whether front is true or not
       : study.cards[study.currentCard].back;
   }
 
   function cardCap() {
-    return study.currentCard >= study.cardLength - 1;
+    return study.currentCard >= study.cardLength - 1;       //used to return when the cap of cards has been reached
   }
 
   function nextCardHandler() {
     if (cardCap()) {
-      if (window.confirm("Restart cards?")) {
-        setStudy({
+      if (window.confirm("Restart cards?")) {                   //if its on the last card and next is pressed it will ask if you want to restart the study session, if not it will redirect you home
+        setStudy({                                              //if it is not at the cap of cards it will add 1 to current card which controls which card is being displayed in deck
           ...study,
           currentCard: 0,
           front: true,
@@ -73,7 +73,7 @@ export default function StudyDeck() {
     if (study.flipped){
       return (
         <button
-        className="btn btn-secondary"
+        className="btn btn-secondary"                   //using disabled on the button would not pass the tests so instead will render the button with a function which checks whether card is flipped or not
         onClick={nextCardHandler}
       >
         Next
@@ -85,7 +85,7 @@ export default function StudyDeck() {
     }
   }
 
-  if (study.cards.length < 3) {
+  if (study.cards.length < 3) {                       //if cards in the deck arent 3 or more it will render this instead allowing you to add cards to the deck
     return (
       <div>
         <nav aria-label="breadcrumb">
