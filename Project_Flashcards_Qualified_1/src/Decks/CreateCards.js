@@ -13,7 +13,7 @@ export default function CreateCards({ cancelHandler }) {
 
   useEffect(() => {
     async function loadDeck() {
-      const loadedDeck = await readDeck(deckId);
+      const loadedDeck = await readDeck(deckId);      //loads in the deck
       setDeck(loadedDeck);
     }
     loadDeck();
@@ -22,7 +22,7 @@ export default function CreateCards({ cancelHandler }) {
   function newCardHandler(event) {
     event.preventDefault();
     async function createdCard() {
-      await createCard(deckId, card);
+      await createCard(deckId, card);                 //creates the new card then sets the card back to its initial state once created
       setCard({
         front: "",
         back: "",
@@ -35,7 +35,7 @@ export default function CreateCards({ cancelHandler }) {
   function changeFront(event) {
     setCard({ ...card, front: event.target.value });
   }
-
+                                                              //changes values inside form
   function changeBack(event) {
     setCard({ ...card, back: event.target.value });
   }
