@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, useParams, Link } from "react-router-dom";
 import { updateDeck, readDeck } from "../utils/api";
 
@@ -13,7 +13,7 @@ export default function EditDecks({ cancelHandler }) {
 
   useEffect(() => {
     async function loadDeck() {
-      const loadedDeck = await readDeck(deckId);
+      const loadedDeck = await readDeck(deckId);          //loads in values of the deck
       setDeck(loadedDeck);
     }
     loadDeck();
@@ -21,14 +21,14 @@ export default function EditDecks({ cancelHandler }) {
 
   async function editHandler(event) {
     event.preventDefault();
-    const result = await updateDeck(deck);
+    const result = await updateDeck(deck);            //handles the submission of deck edit then redirects you to its page
     history.push(`/decks/${result.id}`);
   }
 
   function changeName(event) {
     setDeck({ ...deck, name: event.target.value });
   }
-
+                                                                            //updates values in deck form
   function changeDesc(event) {
     setDeck({ ...deck, description: event.target.value });
   }
