@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { readDeck } from "../utils/api";
 
@@ -12,13 +12,13 @@ export default function DeckView({ deckDeleteHandler, cardDeleteHandler }) {
 
   useEffect(() => {
     async function loadDeck() {
-      const loadedDeck = await readDeck(deckId);
+      const loadedDeck = await readDeck(deckId);      //loads in the deck
       setDeck(loadedDeck);
     }
     loadDeck();
   }, [deckId]);
 
-  const cardList = deck.cards.map((card) => (
+  const cardList = deck.cards.map((card) => (       //maps all cards in the deck to be displayed as a card
     <div className="card" key={card.id}>
       <div className="card-body">
         <h5 className="card-title">{card.name}</h5>
